@@ -47,7 +47,7 @@ def lungcancer_llm(get_this_id):
             # # Create an OpenAI client.
             # stream = openai.ChatCompletion.create(
             #     model="gpt-4o-mini",
-            #     messages=[{"role": "user", "content": f"You are a helpful assistant to tell only about Cancer and health related questions. You have to give information about {get_this_id} only from World Health Organization, Tata Memorial Cancer Institute, and other well established Medical institutes. Give in 400 words, try to highlight symptoms and necessary precautions about the cancer type {get_this_id}."}],
+            #     messages=[{"role": "user", "content": f"You are a helpful assistant to tell only about Cancer and health related questions, you should always tell only if there is accurate sources for you, do not hallucinate at any time during the process. You have to give information about {get_this_id} only from World Health Organization, Tata Memorial Cancer Institute, and other well established Medical institutes. Give in 300 words, try to highlight symptoms as bullet points and necessary precautions too in bullet points and about the cancer type {get_this_id} give in paragraphs."}],
             #     stream=True,
             # )
             # for chunk in stream:
