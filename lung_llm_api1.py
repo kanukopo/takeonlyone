@@ -33,10 +33,17 @@ def lungcancer_llm(get_this_id):
             )
         
             for chunk in stream:
-                if chunk.choices and chunk.choices[0].delta.content is not None:
-                    output.append(chunk.choices[0].delta.content)
-
-        
+            # Debugging line to see the structure of the response
+            # print(chunk)  
+    
+                # Check if 'choices' exists and is not empty
+                if hasattr(chunk, 'choices') and chunk.choices:
+                    # Check if the first choice has 'delta' and 'content'
+                    if hasattr(chunk.choices[0], 'delta') and hasattr(chunk.choices[0].delta, 'content'):
+                        content = chunk.choices[0].delta.content
+                        if content is not None:
+                            output.append(content)
+            
             # # Create an OpenAI client.
             # stream = openai.ChatCompletion.create(
             #     model="gpt-4o-mini",
