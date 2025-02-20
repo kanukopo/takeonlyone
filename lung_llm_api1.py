@@ -56,3 +56,4 @@ def lungcancer_llm():
     return output
 
 
+st.write(output)
