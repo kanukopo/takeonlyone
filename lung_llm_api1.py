@@ -43,7 +43,8 @@ def lungcancer_llm(get_this_id):
                         content = chunk.choices[0].delta.content
                         if content is not None:
                             output.append(content)
-            
+
+            output = [get_this_id.replace("_", " ").upper(),output]
             # # Create an OpenAI client.
             # stream = openai.ChatCompletion.create(
             #     model="gpt-4o-mini",
@@ -61,10 +62,8 @@ def lungcancer_llm(get_this_id):
 
     return ''.join(output)
 
-# Streamlit UI
 get_this_id = st.query_params.get("get_parameterss")
 output = lungcancer_llm(get_this_id)
-# st.write(output)
 
 
 
