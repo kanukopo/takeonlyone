@@ -35,16 +35,16 @@ def lungcancer_llm(get_this_id):
             for chunk in stream:
             # Debugging line to see the structure of the response
             # print(chunk)  
-    
+                output1 = []
                 # Check if 'choices' exists and is not empty
                 if hasattr(chunk, 'choices') and chunk.choices:
                     # Check if the first choice has 'delta' and 'content'
                     if hasattr(chunk.choices[0], 'delta') and hasattr(chunk.choices[0].delta, 'content'):
                         content = chunk.choices[0].delta.content
                         if content is not None:
-                            output.append(content)
+                            output1.append(content)
 
-            output = [get_this_id.replace("_", " ").upper(),output]
+            # output = [output]
             # # Create an OpenAI client.
             # stream = openai.ChatCompletion.create(
             #     model="gpt-4o-mini",
@@ -54,13 +54,17 @@ def lungcancer_llm(get_this_id):
             # for chunk in stream:
             #     if chunk.choices[0].delta.content is not None:
             #         output.append(chunk.choices[0].delta.content)
-
+            first_part = get_this_id.replace("_", " ")
+            first_part = first_part.upper()
+            output1 = ''.join(output1)
+            output = [first_part, output1]
+        
         else:
             output = ["I am learning on daily basis, let's try another thing."]
     else:
         output = ["Invalid response, please try again."]
 
-    return ''.join(output)
+    return output
 
 get_this_id = st.query_params.get("get_parameterss")
 output = lungcancer_llm(get_this_id)
