@@ -37,7 +37,7 @@ def lungcancer_llm(get_this_id):
     return ''.join(output)
 
 # Streamlit UI
-get_this_id = st.query_params.get("get_parameterss")
+get_this_id = st.query_params("get_parameterss")
 output = lungcancer_llm(get_this_id)
 st.write(output)
 
