@@ -21,13 +21,31 @@ def lungcancer_llm(get_this_id):
 
             # Create an OpenAI client.
             stream = openai.ChatCompletion.create(
-                model="gpt-4o-mini",
-                messages=[{"role": "user", "content": f"You are a helpful assistant to tell only about Cancer and health related questions. You have to give information about {get_this_id} only from World Health Organization, Tata Memorial Cancer Institute, and other well established Medical institutes. Give in 400 words, try to highlight symptoms and necessary precautions about the cancer type {get_this_id}."}],
+                model="gpt-4",  # Use a valid model name
+                messages=[{
+                    "role": "user",
+                    "content": f"You are a helpful assistant to tell only about Cancer and health related questions. "
+                               f"You have to give information about {get_this_id} only from World Health Organization, "
+                               f"Tata Memorial Cancer Institute, and other well established Medical institutes. "
+                               f"Give in 400 words, try to highlight symptoms and necessary precautions about the cancer type {get_this_id}."
+                }],
                 stream=True,
             )
+        
             for chunk in stream:
-                if chunk.choices[0].delta.content is not None:
+                if chunk.choices and chunk.choices[0].delta.content is not None:
                     output.append(chunk.choices[0].delta.content)
+
+        
+            # # Create an OpenAI client.
+            # stream = openai.ChatCompletion.create(
+            #     model="gpt-4o-mini",
+            #     messages=[{"role": "user", "content": f"You are a helpful assistant to tell only about Cancer and health related questions. You have to give information about {get_this_id} only from World Health Organization, Tata Memorial Cancer Institute, and other well established Medical institutes. Give in 400 words, try to highlight symptoms and necessary precautions about the cancer type {get_this_id}."}],
+            #     stream=True,
+            # )
+            # for chunk in stream:
+            #     if chunk.choices[0].delta.content is not None:
+            #         output.append(chunk.choices[0].delta.content)
 
         else:
             output = ["I am learning on daily basis, let's try another thing."]
