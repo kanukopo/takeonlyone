@@ -16,9 +16,9 @@ import requests
 
 def lungcancer_llm():
     # https://canceproit.pythonanywhere.com/lungcancer_llm?get_parameterss=Adenocarcinoma_Lung_Cancer
-    # get_this_id = st.query_params.get("get_parameterss")
+    get_this_id = st.query_params.get("get_parameterss")
 
-    get_this_id = request.query_params.get(get_parameterss)
+    # get_this_id = request.query_params.get(get_parameterss)
 
     output = []
 
